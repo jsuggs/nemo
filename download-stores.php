@@ -1,8 +1,12 @@
 <?php
 
 $numStores = readline('Stores to download: ');
+$reverse = readline('Reverse the array [yN]: ');
 $storesImported = 0;
 $stores = file('stores.csv');
+if (strtolower($reverse) == 'y') {
+    $stores = array_reverse($stores);
+}
 foreach ($stores as $store) {
     $store = trim($store);
     $dir = sprintf('store_data/%s', $store);
