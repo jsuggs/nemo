@@ -8,6 +8,7 @@ if (strtolower($reverse) == 'y') {
     $stores = array_reverse($stores);
 }
 foreach ($stores as $store) {
+    $storesImported++;
     $store = trim($store);
     $dir = sprintf('store_data/%s', $store);
     if (file_exists($dir)) {
@@ -24,7 +25,6 @@ foreach ($stores as $store) {
     $productsFile = sprintf('%s/products.json', $dir);
     $productsUrl = sprintf('http://api.bigcartel.com/%s/products.json', $store);
     file_put_contents($productsFile, file_get_contents($productsUrl));
-    $storesImported++;
 
     if ($storesImported == $numStores) {
         break;
